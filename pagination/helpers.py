@@ -1,15 +1,11 @@
 """Useful functions to help with web scraping tasks"""
-#=======================#
 import requests
 from lxml import etree
-#=======================#
 
 ### Configuration ###
-#=======================#
 HEADERS = {"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"}
-#=======================#
 
-#=======================#
+
 class ScrapingSession(requests.Session):
     def __init__(self):
         requests.Session.__init__(self)
@@ -32,7 +28,7 @@ class ScrapingSession(requests.Session):
         try:
             response = self.get(url, headers=HEADERS, timeout=20)
         except:
-            # Handle timeout exception
+            # Handle timeout exceptions
             try:
                 print(f"The request to ({url}) wasn't successful\nLet's try again")
                 response = self.get(url, headers=HEADERS, timeout=20)
@@ -83,4 +79,3 @@ class ScrapingSession(requests.Session):
                 tree = None
 
         return tree
-#=======================#

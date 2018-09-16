@@ -1,22 +1,16 @@
-#=======================#
 import csv
 import scrape
 from time import sleep
-#=======================#
 
 ### Configuration ###
-#=======================#
-# The Path of the output file
-# which is in CSV format
+# The Path of the output file (which is in CSV format)
 OUTPUT = 'output.csv'
 
 # The Path of a text file that
 # keeps track of processed URLs
 DONE = 'DONE.txt'
-#=======================#
 
 
-#=======================#
 def main():
     # Load the already processed URLs
     try:
@@ -35,7 +29,7 @@ def main():
         outpt_writer = csv.writer(outpt)
 
         # Extract the pages
-        pages = scrape.get_pages()
+        pages = scrape.get_pages_urls()
         if pages is None:
             print("Error: Couldn't retrieve website pages\nPlease try again later")
             quit()
@@ -71,18 +65,13 @@ def main():
                 sleep(2)
 
             if not revisit:
-                # Write the page URL to the processed URLs file
+                # Save the page URL to the processed URLs file
                 # if (and only if) all of its items
                 # were scraped w/o any issues
                 processed_urls_file.write(page + "\n")
 
-
     processed_urls_file.close()
-#=======================#
-
 
 ### Start working ###
-#=======================#
 if __name__ == '__main__':
     main()
-#=======================#
